@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Your base production configuration goes in this file. Environment-specific
  * overrides go in their respective config/environments/{{WP_ENV}}.php file.
@@ -128,6 +129,17 @@ Config::define('WP_DEBUG_DISPLAY', false);
 Config::define('WP_DEBUG_LOG', false);
 Config::define('SCRIPT_DEBUG', false);
 ini_set('display_errors', '0');
+
+// FlyWP API Key
+Config::define('FLYWP_API_KEY', env('FLYWP_API_KEY'));
+
+/**
+ * Redis Settings
+ */
+Config::define('WP_REDIS_HOST', 'redis');
+Config::define('WP_REDIS_PREFIX', env('WP_REDIS_PREFIX'));
+Config::define('WP_REDIS_DISABLE_BANNERS', true);
+Config::define('WP_REDIS_DISABLE_METRICS', true);
 
 /**
  * Allow WordPress to detect HTTPS when used behind a reverse proxy or a load balancer
