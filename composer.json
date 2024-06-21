@@ -35,6 +35,14 @@
       "only": [
         "wpackagist-plugin/*",
         "wpackagist-theme/*"
+     {
+	"repositories": {
+		"satispress": {
+			"type": "composer",
+			"url": "https://repo.spiritual-cloud.com/satispress/"
+		}
+	}
+}
       ]
     }
   ],
