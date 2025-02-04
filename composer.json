@@ -35,9 +35,25 @@
       "only": [
         "wpackagist-plugin/*",
         "wpackagist-theme/*"
+     {
+	"repositories": {
+		"satispress": {
+			"type": "composer",
+			"url": "https://repo.spiritual-cloud.com/satispress/"
+		}
+	}
+}
       ]
     }
   ],
+  {
+	"repositories": {
+		"satispress": {
+		"type": "composer",
+		"url": "https://repo.spiritwp.com/satispress/"
+		}
+	}
+}
   "require": {
     "php": ">=8.0",
     "composer/installers": "^2.2",
