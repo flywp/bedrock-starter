@@ -49,7 +49,7 @@
     "roots/wp-config": "1.0.0",
     "roots/wp-password-bcrypt": "1.1.0",
     "wpackagist-theme/twentytwentyfour": "^1.0",
-    "wpackagist-plugin/flywp": "<1.0",
+    "wpackagist-plugin/flywp": "<2.0",
     "wpackagist-plugin/redis-cache": "^2.5"
   },
   "require-dev": {
