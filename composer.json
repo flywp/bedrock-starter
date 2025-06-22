@@ -39,17 +39,17 @@
     }
   ],
   "require": {
-    "php": ">=8.0",
+    "php": ">=8.1",
     "composer/installers": "^2.2",
     "vlucas/phpdotenv": "^5.5",
     "oscarotero/env": "^2.1",
     "roots/bedrock-autoloader": "^1.0",
     "roots/bedrock-disallow-indexing": "^2.0",
-    "roots/wordpress": "6.8",
+    "roots/wordpress": "^6.8",
     "roots/wp-config": "1.0.0",
     "roots/wp-password-bcrypt": "1.1.0",
-    "wpackagist-theme/twentytwentyfour": "^1.0",
-    "wpackagist-plugin/flywp": "<1.0",
+    "wpackagist-theme/twentytwentyfive": "^1.2",
+    "wpackagist-plugin/flywp": "^1.0",
     "wpackagist-plugin/redis-cache": "^2.5"
   },
   "require-dev": {
