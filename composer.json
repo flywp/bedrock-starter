@@ -50,7 +50,7 @@
     "roots/wp-password-bcrypt": "1.1.0",
     "wpackagist-theme/twentytwentyfive": "^1.2",
     "wpackagist-plugin/flywp": "^1.0",
-    "wpackagist-plugin/redis-cache": "^2.5"
+    "wpackagist-plugin/redis-cache": "^2.6"
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "^3.7.1",
