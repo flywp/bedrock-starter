@@ -133,6 +133,9 @@ ini_set('display_errors', '0');
 // FlyWP API Key
 Config::define('FLYWP_API_KEY', env('FLYWP_API_KEY'));
 
+// FlyWP Magic Login Public Key
+Config::define('FLYWP_LOGIN_PUBLIC_KEY', env('FLYWP_LOGIN_PUBLIC_KEY'));
+
 /**
  * Redis Settings
  */
