@@ -20,9 +20,11 @@ updates:
       plugins:
         patterns:
           - "wpackagist-plugin/*"
+          - "wp-plugin/*"
       themes:
         patterns:
           - "wpackagist-theme/*"
+          - "wp-theme/*"
 
   - package-ecosystem: "github-actions"
     directory: "/"

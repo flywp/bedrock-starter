@@ -10,7 +10,16 @@
  */
 
 use Roots\WPConfig\Config;
+
 use function Env\env;
+
+// CONVERT_* + STRIP_QUOTES + LOCAL_FIRST
+Env\Env::$options
+    = Env\Env::CONVERT_BOOL
+    | Env\Env::CONVERT_NULL
+    | Env\Env::CONVERT_INT
+    | Env\Env::STRIP_QUOTES
+    | Env\Env::LOCAL_FIRST;
 
 /**
  * Directory containing all of the site's files
@@ -22,7 +31,7 @@ $root_dir = dirname(__DIR__);
 /**
  * Document Root
  *
- * @var string
+ * @var non-falsy-string
  */
 $webroot_dir = $root_dir . '/web';
 
@@ -35,8 +44,13 @@ if (file_exists($root_dir . '/.env')) {
         ? ['.env', '.env.local']
         : ['.env'];
 
-    $dotenv = Dotenv\Dotenv::createUnsafeImmutable($root_dir, $env_files, false);
+    $repository = Dotenv\Repository\RepositoryBuilder::createWithNoAdapters()
+        ->addAdapter(Dotenv\Repository\Adapter\EnvConstAdapter::class)
+        ->addAdapter(Dotenv\Repository\Adapter\PutenvAdapter::class)
+        ->immutable()
+        ->make();
 
+    $dotenv = Dotenv\Dotenv::create($repository, $root_dir, $env_files, false);
     $dotenv->load();
 
     $dotenv->required(['WP_HOME', 'WP_SITEURL']);
@@ -52,10 +66,27 @@ if (file_exists($root_dir . '/.env')) {
 define('WP_ENV', env('WP_ENV') ?: 'production');
 
 /**
- * Infer WP_ENVIRONMENT_TYPE based on WP_ENV
+ * Set WP_ENVIRONMENT_TYPE if not already defined
  */
-if (!env('WP_ENVIRONMENT_TYPE') && in_array(WP_ENV, ['production', 'staging', 'development', 'local'])) {
-    Config::define('WP_ENVIRONMENT_TYPE', WP_ENV);
+if (!defined('WP_ENVIRONMENT_TYPE')) {
+    $wp_environment_type = env('WP_ENVIRONMENT_TYPE');
+
+    if ($wp_environment_type) {
+        Config::define('WP_ENVIRONMENT_TYPE', $wp_environment_type);
+    } elseif (in_array(WP_ENV, ['production', 'staging', 'development', 'local'], true)) {
+        Config::define('WP_ENVIRONMENT_TYPE', WP_ENV);
+    }
+}
+
+/**
+ * Set WP_DEVELOPMENT_MODE if explicitly configured
+ */
+if (!defined('WP_DEVELOPMENT_MODE')) {
+    $wp_development_mode = env('WP_DEVELOPMENT_MODE');
+
+    if ($wp_development_mode) {
+        Config::define('WP_DEVELOPMENT_MODE', $wp_development_mode);
+    }
 }
 
 /**
@@ -121,6 +152,9 @@ Config::define('DISALLOW_FILE_MODS', true);
 
 // Limit the number of post revisions
 Config::define('WP_POST_REVISIONS', env('WP_POST_REVISIONS') ?? true);
+
+// Disable script concatenation
+Config::define('CONCATENATE_SCRIPTS', false);
 
 /**
  * Debugging Settings
