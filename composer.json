@@ -20,9 +20,11 @@
     "bedrock",
     "composer",
     "roots",
+    "wordpress-composer",
     "wordpress",
-    "wp",
-    "wp-config"
+    "wp-composer",
+    "wp-config",
+    "wp"
   ],
   "support": {
     "issues": "https://github.com/roots/bedrock/issues",
@@ -30,6 +32,12 @@
   },
   "repositories": [
     {
+      "name": "wp-packages",
+      "type": "composer",
+      "url": "https://repo.wp-packages.org"
+    },
+    {
+      "name": "wpackagist",
       "type": "composer",
       "url": "https://wpackagist.org",
       "only": [
@@ -39,30 +47,31 @@
     }
   ],
   "require": {
-    "php": ">=8.1",
-    "composer/installers": "^2.2",
-    "vlucas/phpdotenv": "^5.5",
-    "oscarotero/env": "^2.1",
+    "php": ">=8.3",
+    "composer/installers": "^2.0",
+    "oscarotero/env": "^2.0",
     "roots/bedrock-autoloader": "^1.0",
     "roots/bedrock-disallow-indexing": "^2.0",
-    "roots/wordpress": "^6.8",
-    "roots/wp-config": "1.0.0",
-    "roots/wp-password-bcrypt": "1.1.0",
-    "wpackagist-theme/twentytwentyfive": "^1.2",
-    "wpackagist-plugin/flywp": "^1.0",
+    "roots/wordpress": "7.1",
+    "roots/wp-config": "^1.0",
+    "vlucas/phpdotenv": "^5.0",
+    "wp-theme/twentytwentyfive": "^1.0",
+    "wpackagist-plugin/flywp": "1.7.1",
     "wpackagist-plugin/redis-cache": "^2.5"
   },
   "require-dev": {
-    "squizlabs/php_codesniffer": "^3.7.1",
-    "roave/security-advisories": "dev-latest"
+    "laravel/pint": "^1.0",
+    "pestphp/pest": "^4.0"
   },
   "config": {
     "optimize-autoloader": true,
     "preferred-install": "dist",
     "allow-plugins": {
       "composer/installers": true,
-      "roots/wordpress-core-installer": true
-    }
+      "roots/wordpress-core-installer": true,
+      "pestphp/pest-plugin": true
+    },
+    "sort-packages": true
   },
   "minimum-stability": "dev",
   "prefer-stable": true,
@@ -81,8 +90,8 @@
     "wordpress-install-dir": "web/wp"
   },
   "scripts": {
-    "test": [
-      "phpcs"
-    ]
+    "lint": "pint --test",
+    "lint:fix": "pint",
+    "test": "pest"
   }
 }
