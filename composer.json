@@ -57,7 +57,7 @@
     "vlucas/phpdotenv": "^5.0",
     "wp-theme/twentytwentyfive": "^1.0",
     "wpackagist-plugin/flywp": "1.7.1",
-    "wpackagist-plugin/redis-cache": "^2.5"
+    "wpackagist-plugin/redis-cache": "^3.0"
   },
   "require-dev": {
     "laravel/pint": "^1.0",
